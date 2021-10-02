@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="BtnAdd" Click="BtnAdd_Click">Добавить</Button>
-            <Button x:Name="BtnDelete" Click="BtnDelete_Click">Удалить</Button>
-            <Button x:Name="BtnEdit" Click="BtnEdit_Click" Content="Изменить"/>
+            <Button x:Name="BtnAdd" Click="BtnAdd_Click" Width="264">Добавить</Button>
+            <Button x:Name="BtnDelete" Click="BtnDelete_Click" Width="264">Удалить</Button>
+            <Button x:Name="BtnEdit" Click="BtnEdit_Click" Content="Изменить" Width="264"/>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="DataGridRegistrations" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>

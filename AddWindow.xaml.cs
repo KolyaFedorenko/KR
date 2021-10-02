@@ -29,8 +29,16 @@ namespace PRKR
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            context.SaveChanges();
-            this.Close();
+            try
+            {
+                context.SaveChanges();
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Ошибка: " + exception.Message);
+            }
+
         }
     }
 }
