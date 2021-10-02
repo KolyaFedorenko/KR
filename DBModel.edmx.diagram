@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e5d947586274fb3bb714cfe4801756b" Name="Diagram1">
+        <EntityTypeShape EntityType="PRKRFDBModel.Camp" Width="1.5" PointX="2" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRKRFDBModel.Equipment" Width="1.5" PointX="2" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRKRFDBModel.Movement" Width="1.5" PointX="6.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRKRFDBModel.Ration" Width="1.5" PointX="6.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRKRFDBModel.Travel" Width="1.5" PointX="4.5" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="PRKRFDBModel.FK_Travel_Camp" ManuallyRouted="false" />
+        <AssociationConnector Association="PRKRFDBModel.FK_Travel_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="PRKRFDBModel.FK_Travel_Movement" ManuallyRouted="false" />
+        <AssociationConnector Association="PRKRFDBModel.FK_Travel_Ration" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PRKRFDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Camp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Место" Type="nvarchar" MaxLength="50" />
+          <Property Name="Координаты" Type="nvarchar" MaxLength="50" />
+          <Property Name="Время" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Одежда" Type="nvarchar" MaxLength="50" />
+          <Property Name="Обувь" Type="nvarchar" MaxLength="50" />
+          <Property Name="Предметы" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Длина маршрута" Type="int" />
+          <Property Name="Опасный участок" Type="nvarchar" MaxLength="50" />
+          <Property Name="Карта" Type="image" />
+        </EntityType>
+        <EntityType Name="Ration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Режим" Type="nvarchar" MaxLength="50" />
+          <Property Name="Калорийность" Type="int" />
+          <Property Name="Вес" Type="int" />
+        </EntityType>
+        <EntityType Name="Travel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id Снаряжения" Type="int" />
+          <Property Name="Id Питания" Type="int" />
+          <Property Name="Id Маршрута" Type="int" />
+          <Property Name="Id Остановки" Type="int" />
+        </EntityType>
+        <Association Name="FK_Travel_Camp">
+          <End Role="Camp" Type="Self.Camp" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id Остановки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id Снаряжения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_Movement">
+          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id Маршрута" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_Ration">
+          <End Role="Ration" Type="Self.Ration" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id Питания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PRKRFDBModelContainer">
+          <EntitySet Name="Camp" EntityType="Self.Camp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movement" EntityType="Self.Movement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ration" EntityType="Self.Ration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travel" EntityType="Self.Travel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Travel_Camp" Association="Self.FK_Travel_Camp">
+            <End Role="Camp" EntitySet="Camp" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Equipment" Association="Self.FK_Travel_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Movement" Association="Self.FK_Travel_Movement">
+            <End Role="Movement" EntitySet="Movement" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Ration" Association="Self.FK_Travel_Ration">
+            <End Role="Ration" EntitySet="Ration" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRKRFDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Camp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Место" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Координаты" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Время" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Travel" Relationship="Self.FK_Travel_Camp" FromRole="Camp" ToRole="Travel" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Одежда" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Обувь" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Предметы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Travel" Relationship="Self.FK_Travel_Equipment" FromRole="Equipment" ToRole="Travel" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Длина_маршрута" Type="Int32" />
+          <Property Name="Опасный_участок" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Карта" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Travel" Relationship="Self.FK_Travel_Movement" FromRole="Movement" ToRole="Travel" />
+        </EntityType>
+        <EntityType Name="Ration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Режим" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Калорийность" Type="Int32" />
+          <Property Name="Вес" Type="Int32" />
+          <NavigationProperty Name="Travel" Relationship="Self.FK_Travel_Ration" FromRole="Ration" ToRole="Travel" />
+        </EntityType>
+        <EntityType Name="Travel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Снаряжения" Type="Int32" />
+          <Property Name="Id_Питания" Type="Int32" />
+          <Property Name="Id_Маршрута" Type="Int32" />
+          <Property Name="Id_Остановки" Type="Int32" />
+          <NavigationProperty Name="Camp" Relationship="Self.FK_Travel_Camp" FromRole="Travel" ToRole="Camp" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Travel_Equipment" FromRole="Travel" ToRole="Equipment" />
+          <NavigationProperty Name="Movement" Relationship="Self.FK_Travel_Movement" FromRole="Travel" ToRole="Movement" />
+          <NavigationProperty Name="Ration" Relationship="Self.FK_Travel_Ration" FromRole="Travel" ToRole="Ration" />
+        </EntityType>
+        <Association Name="FK_Travel_Camp">
+          <End Role="Camp" Type="Self.Camp" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id_Остановки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id_Снаряжения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_Movement">
+          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id_Маршрута" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Travel_Ration">
+          <End Role="Ration" Type="Self.Ration" Multiplicity="0..1" />
+          <End Role="Travel" Type="Self.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Travel">
+              <PropertyRef Name="Id_Питания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRKRFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Camp" EntityType="Self.Camp" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Movement" EntityType="Self.Movement" />
+          <EntitySet Name="Ration" EntityType="Self.Ration" />
+          <EntitySet Name="Travel" EntityType="Self.Travel" />
+          <AssociationSet Name="FK_Travel_Camp" Association="Self.FK_Travel_Camp">
+            <End Role="Camp" EntitySet="Camp" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Equipment" Association="Self.FK_Travel_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Movement" Association="Self.FK_Travel_Movement">
+            <End Role="Movement" EntitySet="Movement" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Travel_Ration" Association="Self.FK_Travel_Ration">
+            <End Role="Ration" EntitySet="Ration" />
+            <End Role="Travel" EntitySet="Travel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PRKRFDBModelContainer" CdmEntityContainer="PRKRFEntities">
+          <EntitySetMapping Name="Camp">
+            <EntityTypeMapping TypeName="PRKRFDBModel.Camp">
+              <MappingFragment StoreEntitySet="Camp">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Место" ColumnName="Место" />
+                <ScalarProperty Name="Координаты" ColumnName="Координаты" />
+                <ScalarProperty Name="Время" ColumnName="Время" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="PRKRFDBModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Одежда" ColumnName="Одежда" />
+                <ScalarProperty Name="Обувь" ColumnName="Обувь" />
+                <ScalarProperty Name="Предметы" ColumnName="Предметы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movement">
+            <EntityTypeMapping TypeName="PRKRFDBModel.Movement">
+              <MappingFragment StoreEntitySet="Movement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Длина_маршрута" ColumnName="Длина маршрута" />
+                <ScalarProperty Name="Опасный_участок" ColumnName="Опасный участок" />
+                <ScalarProperty Name="Карта" ColumnName="Карта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ration">
+            <EntityTypeMapping TypeName="PRKRFDBModel.Ration">
+              <MappingFragment StoreEntitySet="Ration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Режим" ColumnName="Режим" />
+                <ScalarProperty Name="Калорийность" ColumnName="Калорийность" />
+                <ScalarProperty Name="Вес" ColumnName="Вес" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travel">
+            <EntityTypeMapping TypeName="PRKRFDBModel.Travel">
+              <MappingFragment StoreEntitySet="Travel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Снаряжения" ColumnName="Id Снаряжения" />
+                <ScalarProperty Name="Id_Питания" ColumnName="Id Питания" />
+                <ScalarProperty Name="Id_Маршрута" ColumnName="Id Маршрута" />
+                <ScalarProperty Name="Id_Остановки" ColumnName="Id Остановки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
