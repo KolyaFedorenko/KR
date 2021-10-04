@@ -56,7 +56,6 @@ namespace PRKR
 
         public void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         public void ShowTable()

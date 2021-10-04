@@ -19,6 +19,7 @@ namespace PRKR
     /// </summary>
     public partial class AddWindow : Window
     {
+        MainWindow mw = (MainWindow)Application.Current.MainWindow;
         PRKRFEntities context;
         public AddWindow(PRKRFEntities context, Equipment newEquipment)
         {
@@ -32,6 +33,7 @@ namespace PRKR
             try
             {
                 context.SaveChanges();
+                mw.ShowTable();
                 this.Close();
             }
             catch (Exception exception)
