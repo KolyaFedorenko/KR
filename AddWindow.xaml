@@ -20,6 +20,8 @@
             <TextBox Text="{Binding Обувь}" Name="TxtShoes"></TextBox>
             <TextBlock>Предметы:</TextBlock>
             <TextBox Text="{Binding Предметы}" Name="TxtItems"></TextBox>
+            <TextBlock>Схема:</TextBlock>
+            <Image Source="{Binding Схема}" Name="Scheme"></Image>
         </UniformGrid>
         <Button x:Name="BtnSave" Grid.Row="1" Click="BtnSave_Click">Save</Button>
     </Grid>

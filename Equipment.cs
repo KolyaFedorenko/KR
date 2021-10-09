@@ -24,6 +24,7 @@ namespace PRKR
         public string Одежда { get; set; }
         public string Обувь { get; set; }
         public string Предметы { get; set; }
+        public byte[] Схема { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Travel> Travel { get; set; }

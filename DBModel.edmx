@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище PRKRFDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище PRKRFDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Camp">
           <Key>
             <PropertyRef Name="Id" />
@@ -22,6 +22,7 @@
           <Property Name="Одежда" Type="nvarchar" MaxLength="50" />
           <Property Name="Обувь" Type="nvarchar" MaxLength="50" />
           <Property Name="Предметы" Type="nvarchar" MaxLength="50" />
+          <Property Name="Схема" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Movement">
           <Key>
@@ -122,8 +123,7 @@
             <End Role="Travel" EntitySet="Travel" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PRKRFDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -146,6 +146,7 @@
           <Property Name="Обувь" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Предметы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Travel" Relationship="Self.FK_Travel_Equipment" FromRole="Equipment" ToRole="Travel" />
+          <Property Name="Схема" Type="Binary" />
         </EntityType>
         <EntityType Name="Movement">
           <Key>
@@ -271,6 +272,7 @@
           <EntitySetMapping Name="Equipment">
             <EntityTypeMapping TypeName="PRKRFDBModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Схема" ColumnName="Схема" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Одежда" ColumnName="Одежда" />
                 <ScalarProperty Name="Обувь" ColumnName="Обувь" />

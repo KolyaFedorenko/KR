@@ -56,6 +56,10 @@ namespace PRKR
 
         public void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
+            Button btnEdit = sender as Button;
+            var editEquipment = btnEdit.DataContext as Equipment;
+            var win = new AddWindow(context, editEquipment);
+            win.ShowDialog();
         }
 
         public void ShowTable()
